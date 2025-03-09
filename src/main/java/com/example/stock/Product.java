@@ -4,6 +4,7 @@ public class Product {
     private String name;
     private int quantity;
     private double price;
+    private double precioTotal;
 
     public Product(String name, int quantity, double price) {
         this.name = name;
@@ -29,5 +30,17 @@ public class Product {
     }
     public void setPrice(double price) {
         this.price = price;
+    }
+    public double getPrecioTotal() {return precioTotal;}
+    public void setPrecioTotal(double precioTotal) {}
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                ", precioTotal=" + precioTotal +
+                '}';
     }
 }

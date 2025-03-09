@@ -3,17 +3,23 @@ package com.example.stock;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ProductService {
 
     private List<Product> products;
 
+    private SumaService sumaService;
+
+
     // Constructor por defecto
     public ProductService() {
+        this.sumaService = new SumaService();
         this.products = new ArrayList<>();
     }
 
     // Constructor para inyectar una lista (útil para tests)
-    public ProductService(List<Product> products) {
+    public ProductService(List<Product> products, SumaService sumaService) {
+        this.sumaService =  sumaService;
         this.products = products;
     }
 
@@ -27,7 +33,9 @@ public class ProductService {
                 product.getQuantity() < 0 || product.getPrice() < 0) {
             return false;
         }
+        product.setPrecioTotal(sumaService.suma(product.getQuantity(),product.getPrice()));
         products.add(product);
+
         return true;
     }
 
@@ -59,4 +67,11 @@ public class ProductService {
         }
         return false;
     }
+
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+
 }
